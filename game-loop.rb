@@ -1,11 +1,31 @@
 require './game-module'
-# require './players'
+require './players'
 
 class GameLoop
     
-  # loop through multiple rounds until one player has life > 1
-    #  Method to pull all the player info and check it for the lives 
+    def initialize
+      
+    end
+    
+    def start
+      firstGame = MathGame::NewGame.new
+      cur_player = firstGame.player1
+      loop do
 
+        firstGame.round_run(cur_player)
 
+        if cur_player == firstGame.player1
+          cur_player = firstGame.player2
+        elsif cur_player == firstGame.player2
+          cur_player = firstGame.player1
+        end
 
+        if firstGame.player1.lives == 0 || firstGame.player2.lives == 0
+       break
+       
+        end
+    end
 end
+    
+end
+
